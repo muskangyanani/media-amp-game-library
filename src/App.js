@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
+
+import Header from './components/Header';
+import Home from './pages/Home';
+import LoginPage from './pages/Login';
+import GameDetail from './pages/GameDetail';
+import LibraryPage from './pages/Library';
+import RequireAuth from './components/RequireAuth';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/game/:id" element={<GameDetail />} />
+
+        {/* Protected Route */}
+        <Route
+          path="/library"
+          element={
+            <RequireAuth>
+              <LibraryPage />
+            </RequireAuth>
+          }
+        />
+
+        {/* Catch any unknown route */}
+        <Route path="*" element={<h2 className="text-center mt-5">404 - Page Not Found</h2>} />
+      </Routes>
+    </>
   );
 }
 
