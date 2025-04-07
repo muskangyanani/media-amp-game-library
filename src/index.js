@@ -1,6 +1,5 @@
-// src/index.js
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // ✅ use from 'react-dom/client' for React 18+
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,7 +10,7 @@ import store from './redux/store';
 
 const clerkKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
-const root = ReactDOM.createRoot(document.getElementById('root')); // ✅ createRoot method
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ClerkProvider publishableKey={clerkKey}>
